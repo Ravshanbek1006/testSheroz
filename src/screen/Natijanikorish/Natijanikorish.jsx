@@ -4,7 +4,7 @@ import PageNameCard from '../../components/Card/PageNameCard';
 import QuizCard from '../../components/Card/QuizCard';
 
 export default function Natijanikorish(props) {
-  console.log(props.route.params.value);
+console.log(props.route.params.value);
   const [Natija, setNatija] = useState(props.route.params.value);
   return (
     <SafeAreaView style={styles.container}>

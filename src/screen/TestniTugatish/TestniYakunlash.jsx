@@ -13,17 +13,21 @@ import StyleColor from '../../assets/styles/color';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SendData from '../../Utils/SendData';
 
 export default function TestniYakunlash(props) {
 
   console.log("props.route.params", props.route.params.INCRans);
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [PostMass, setPostMass] = useState([]);
+  const [Token, setToken] = useState('');
+
 
   const [AllResult, setAllResult] = useState([
     {
       vaqt: props.route.params.Kvaqt,
-      nomi: props.route.params.TestName,
+      Id: props.route.params.TestID,
     },
   ]);
 
@@ -38,7 +42,22 @@ export default function TestniYakunlash(props) {
       },
   )
 
-  console.log(Ishlanganlar);
+  console.log("SSS", AllResult);
+
+
+  function GetQuizID() {
+    const currMass = [...PostMass]
+
+    props.route.params.Natija.map(quiz => {
+      currMass.push({
+        question_data: quiz.id,
+        user_answer: quiz.UserAns
+      })
+    })
+    setPostMass(currMass)
+  }
+
+  
 
   const [persent, setpersent] = useState(
     parseInt((props.route.params.CRans / props.route.params.soni) * 100),
@@ -46,6 +65,7 @@ export default function TestniYakunlash(props) {
   const [holat, setHolat] = useState('');
 
   useEffect(() => {
+    GetQuizID()
     Holatlar();
   }, []);
 
@@ -69,6 +89,12 @@ export default function TestniYakunlash(props) {
   function Natija() {
     navigation.navigate('Natijanikorish', { value: props.route.params.Natija });
   }
+
+  AsyncStorage.getItem('token').then(val => {
+    setToken(val);
+  });
+
+
 
   // const [natija , srtNatija] = useState(20)
   const navigation = useNavigation();
@@ -121,8 +147,6 @@ export default function TestniYakunlash(props) {
                       },
                     );
 
-                    console.log(data);
-
                     if (data == null) {
                       await AsyncStorage.setItem(
                         'Ishlandi',
@@ -131,12 +155,19 @@ export default function TestniYakunlash(props) {
                     } else {
                       let mass = [...data];
                         mass.push(Ishlanganlar)
-                        
                       await AsyncStorage.setItem(
                         'Ishlandi',
                         JSON.stringify(mass),
                       );
                     }
+
+
+
+                    let PostWork = await SendData.UserData({
+                      category: Number(props.route.params.TestID),
+                      duration: "0",
+                      answers_album: PostMass
+                    }, Token)
 
 
 

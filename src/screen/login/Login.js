@@ -20,6 +20,7 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 import LottieView from 'lottie-react-native';
 import Back from '../../components/Back/Back';
 import NetInfo from "@react-native-community/netinfo"
+import GetUserData from '../../Utils/GetUserData';
 
 
 const Login = () => {
@@ -29,7 +30,13 @@ const Login = () => {
   const [Phone, setPhone] = useState('');
   const [password, setpassword] = useState('');
   const [type, setType] = useState(null)
+  const [token, setToken] = useState('')
+  const [categoryID, setcategoryID] = useState(0)
   const navigation = useNavigation();
+  const [Ishlanganlar, setIshlanganlar] = useState([])
+
+
+
 
   useEffect(() => {
      NetInfo.fetch().then(state => {
@@ -43,19 +50,86 @@ const Login = () => {
      });
     }
 
-  const GoLogin = async () => {
+   
 
+
+
+  const GoLogin = async () => {
     setLoad(true);
-    AsyncStorage.setItem('oka', '123');
 
     let login = await KirishData.PostUsersLogin({
       phone: Phone,
       password: password,
     });
+
     if (login.data) {
+      console.log("login.data", login.data);
+      let tokens = ''
+    await AsyncStorage.getItem("token").then(res => {
+      tokens = JSON.parse(res)
+      })
+
+      let data = await GetUserData.UserData(login.data.id,tokens)
+
+     let curMass = [...Ishlanganlar]
+
+     let Object = {
+      soni: 0,
+      CRans: 0,
+      INCRans:0,
+      TestID: 0,
+      Natija: []
+     }
+      let result = {  
+        UserAns: '',
+        correct_answer: '',
+        image: '',
+        id: 0,
+        type: false
+      }
+
+      if (data.length > 0) {
+        await data.map((variant, index) => {
+          Object.TestID = variant.category
+
+          variant.answers_album.map((element, index) => {
+            result.UserAns = element.user_answer
+            result.correct_answer = element.question_data.correct_answer,
+            result.image = element.question_data.image
+            result.type = element.user_answer == element.question_data.correct_answer ? true : false
+            Object.soni+=1
+            Object.CRans = result.type ? Object.CRans+=1 : Object.CRans
+            Object.INCRans = !result.type ? Object.INCRans+=1 : Object.INCRans
+            Object.Natija.push({...result})
+            result = {
+              UserAns: '',
+              correct_answer: '',
+              image: '',
+              id: 0,
+              type: false
+            }
+          })
+          curMass.push(JSON.parse(JSON.stringify(Object)))
+          Object = {
+            soni: 0,
+            CRans: 0,
+            INCRans: 0,
+            TestID: 0,
+            Natija: []
+          }
+
+           AsyncStorage.setItem('Finish', JSON.stringify([{
+            vaqt: "",
+            Id: variant.category
+          }]));
+        })
+      }
+      console.log(curMass);
       setErr(false)
-     await AsyncStorage.setItem('UserName', login.data.full_name);
-     await AsyncStorage.setItem('Phone', login.data.phone);
+      AsyncStorage.setItem('oka', '123');
+      await AsyncStorage.setItem('Ishlandi', JSON.stringify(curMass));
+      await AsyncStorage.setItem('UserName', login.data.full_name);
+      await AsyncStorage.setItem('Phone', login.data.phone);
       navigation.navigate('TabNavigator');
     } else {
       setLoad(false)

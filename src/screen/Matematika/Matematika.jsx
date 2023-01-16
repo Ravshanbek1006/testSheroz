@@ -42,11 +42,14 @@ export default function Matematika(props) {
       if (item != null) {
         setData(item);
       }
+      console.log("item", item);
       // setIconName("check-circle")
     });
 
     await AsyncStorage.getItem('Ishlandi').then(data => {
       let item = JSON.parse(data);
+      console.log(data);
+
       if (item != null) {
         setIshlangan(item);
       }
@@ -58,6 +61,8 @@ export default function Matematika(props) {
 
 
 
+    console.log("Ishlangan", Ishlangan);
+
     
 
     if (Ishlangan.length > 0) {
@@ -65,6 +70,7 @@ export default function Matematika(props) {
 
       if (aaa) {
         Ishlangan.map((element) => {
+          console.log(element);
           if (element.TestID == id) {
             navigation.navigate('QaytaNatijaniKorish', {
               soni: element.soni,
@@ -107,9 +113,9 @@ export default function Matematika(props) {
       <ScrollView>
         {Category.length > 0 &&
           Category.map((item, index) => {
-            Data &&
-              Data.map(element => {
-                if (item.title == element.nomi) {
+            Ishlangan &&
+              Ishlangan.map(element => {
+                if (element.TestID == item.id) {
                   item.IconName = 'check-circle';
                 }
               });
