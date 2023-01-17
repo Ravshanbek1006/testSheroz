@@ -17,3 +17,18 @@ def create_jar_targets(jarfiles):
             name = name,
             binary_jar = jarfile,
         )
+android {
+  signingConfigs {
+    release {
+      storeFile file('SOFFTEST')
+      storePassword 'soff1234'
+      keyAlias 'SOFFTEST'
+      keyPassword 'soff1234'
+    }
+  }
+  buildTypes {
+    release {
+      signingConfig signingConfigs.release
+    }
+  }
+}
