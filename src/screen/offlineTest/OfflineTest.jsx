@@ -22,7 +22,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OfflineTest = props => {
 
-  console.log(props.route.params);
   
   const [Savollars, setSavollar] = useState([]);
   const [Nomi, setNomi] = useState(props.route.params.title);

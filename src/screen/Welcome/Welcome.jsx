@@ -33,11 +33,11 @@ export default function Welcome() {
       <View>
         <BtnButton text="Ro’yxatdan o’tish" link="Register" />
         <Text style={{color: '#FFF', marginBottom: 20}}>
-          Qanday ro’yxatdan o’tkaziladi?
+          {/* Qanday ro’yxatdan o’tkaziladi? */}
         </Text>
 
         <BtnButton text="Tizimga kirish" link="Login" />
-        <Text style={{color: '#FFF'}}> Qanday tizimga kiriladi?</Text>
+        {/* <Text style={{color: '#FFF'}}> Qanday tizimga kiriladi?</Text> */}
       </View>
       <TouchableOpacity >
         <View style={styles.righttext}>

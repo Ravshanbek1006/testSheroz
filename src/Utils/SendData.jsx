@@ -3,8 +3,6 @@ import { BaseUrl4 } from './FetchData';
 class SendData {
     async UserData(data, token) {
 
-        console.log(data, "data", token);
-
         let endPoint = 'get_answer';
         let response = await fetch(`${BaseUrl4}/${endPoint}/`, {
             method: 'POST',
@@ -14,15 +12,15 @@ class SendData {
             },
             body: JSON.stringify(data),
         })
-            .then(ress => {
-                return ress.json();
-            })
-            .then(json => {
-                return json;
-            })
-            .catch(err => {
-                return err;
-            });
+        .then(ress => {
+            return ress.json();
+        })
+        .then(json => {
+            return json;
+        })
+        .catch(err => {
+            return err;
+        });
 
         return response;
     }

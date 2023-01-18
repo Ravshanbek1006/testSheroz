@@ -3,8 +3,6 @@
 
   class OffTest {
     async Savollar(ID) {
-      console.log(ID);
-      // console.log("ID" , ID);
       let endPoint = 'category';
       let response = await fetch(`${BaseUrl4}/${endPoint}/${ID}/`, {
         method: 'GET',

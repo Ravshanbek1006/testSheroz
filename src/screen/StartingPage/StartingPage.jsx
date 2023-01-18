@@ -26,13 +26,10 @@ export default function StartingPage() {
     setApi1(val);
   });
   if (Token) {
-    console.log(api, 'slaom');
     if (api || api1 == '123') {
       navigation.navigate('TabNavigator');
-      console.log(1);
     } else {
       navigation.navigate('Slider');
-      console.log(2);
     }
   }
 

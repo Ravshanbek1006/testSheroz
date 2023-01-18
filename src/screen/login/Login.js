@@ -42,6 +42,7 @@ const Login = () => {
      NetInfo.fetch().then(state => {
       setType(state.isConnected )
   });
+    UserData()
   }, []);
   
     const Connect = async() => {
@@ -50,7 +51,16 @@ const Login = () => {
      });
     }
 
-   
+    
+  async function UserData() {
+    await AsyncStorage.getItem("Phone").then(res => {
+      setPhone(res)
+     })
+
+    await AsyncStorage.getItem("Parol").then(res => {
+      setpassword(res)
+    })
+   }
 
 
 
@@ -63,7 +73,6 @@ const Login = () => {
     });
 
     if (login.data) {
-      console.log("login.data", login.data);
       let tokens = ''
     await AsyncStorage.getItem("token").then(res => {
       tokens = JSON.parse(res)
@@ -124,7 +133,6 @@ const Login = () => {
           }]));
         })
       }
-      console.log(curMass);
       setErr(false)
       AsyncStorage.setItem('oka', '123');
       await AsyncStorage.setItem('Ishlandi', JSON.stringify(curMass));
@@ -159,43 +167,58 @@ const Login = () => {
           <RegistrHedercard title="Tizimga kirish" />
           <View>
             <View style={styles.mainInput}>
-              <Entypo
-                name="phone"
-                size={30}
-                color="#fff"
-                style={{ marginTop: 28, marginRight: 10 }}
-              />
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 50,
+                }}>
+                <Entypo name={'phone'} size={30} color={'#FFF'} />
+              </View>
               <TextInput
                 onChangeText={e => setPhone(e)}
+                defaultValue={Phone}
                 style={styles.input}
                 placeholder="Telefon nomeringiz"
                 keyboardType="decimal-pad"
                 placeholderTextColor={"#fff"}
+                color="#fff"
               />
             </View>
-            <View style={styles.mainInput1}>
-              <Entypo
-                name="lock"
-                size={30}
-                color="#fff"
-                style={{ marginTop: 28, marginRight: 10 }}
-              />
+
+
+            <View style={styles.mainInput}>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 50,
+                }}>
+                <Entypo name={'lock'} size={30} color={'#FFF'} />
+              </View>
               <TextInput
+              defaultValue={password}
                 onChangeText={e => setpassword(e)}
                 style={styles.input}
                 secureTextEntry={show}
                 placeholder="Parolingiz"
                 placeholderTextColor={"#fff"}
-
+                color="#fff"
               />
+              <TouchableOpacity
+                onPress={() => {
+                  setShow(prev => !prev);
+                }}>
+              <View style={{height:50,justifyContent: "center", paddingStart: 5 }}>
+                {show ? (
+                  <Ionicons name="eye-off-outline" size={35} color={'#fff'} />
+                ) : (
+                  <Ionicons name="eye-outline" size={35} color={'#fff'} />
+                )}
+              </View>
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity
-              style={styles.show}
-              onPress={() => {
-                setShow(prev => !prev);
-              }}>
-              <Text>{show ? <Ionicons name='eye-off-outline' size={25} color={"#fff"} /> : <Ionicons name='eye-outline' size={25} color={"#fff"} />}</Text>
-            </TouchableOpacity>
+            
               {
                 (Err) && <Text style={{textAlign:"center", marginTop:20, color:"red"}}>Parol yoki Nomer xato</Text>
               }
@@ -205,7 +228,7 @@ const Login = () => {
               <Text style={styles.btntext}>{Load ? <ActivityIndicator size="small" color="teal" />  : 'Kirish'}</Text>
             </TouchableOpacity>
           </View> 
-          <Text style={styles.help}>Yordam Kerakmi?</Text>
+          <Text style={styles.help}></Text>
         </View>
       </SafeAreaView>
   );
@@ -234,17 +257,19 @@ const styles = StyleSheet.create({
   mainInput: {
     flexDirection: 'row',
     justifyContent: 'center',
+    width: "100%",
+    marginTop:20,
+    display: 'flex',
+    justifyContent: "flex-start",
+    paddingHorizontal: 10
   },
-  mainInput1: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
+
   input: {
-    height: 53,
+    // height: ,
     width: 304,
-    marginTop: 20,
+    // marginTop: 20,
     borderWidth: 1,
-    color: '#fff  ',
+    color: '#fff',
     borderRadius: 5,
     fontSize: 16,
     padding: 10,

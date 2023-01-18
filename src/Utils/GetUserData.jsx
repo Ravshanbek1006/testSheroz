@@ -2,7 +2,6 @@ import { BaseUrl4 } from './FetchData';
 
 class GetUserData {
     async UserData(id, token) {
-        console.log("token keldi ", token);
         let endPoint = 'filter-user/?user_id=';
         let response = await fetch(`${BaseUrl4}/${endPoint}${id}`, {
             method: 'GET',

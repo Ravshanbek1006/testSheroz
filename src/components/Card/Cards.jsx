@@ -11,13 +11,13 @@ export default function Card(props) {
 
 
   const onpress = () => {
-    navigationn.navigate("Pdf", {"value": props.PDFLink})
+    navigationn.navigate(props.pageName, {"value": props.PDFLink, "pageTitle": props.text})
   }
 
   return (
     <TouchableOpacity onPress={onpress}>
       <View style={styles.card}>
-        <View style={{ flexDirection: "row", }}>
+        <View style={{ flexDirection: "row", justifyContent:"center", alignItems:"center" }}>
           <FontAwesome5 size={20} name={props.icon2} style={{ marginHorizontal: 10, marginVertical: 2 }} />
           <Text style={{ color: "black", fontSize: 18 }}>{props.text}</Text>
         </View>
@@ -29,8 +29,8 @@ export default function Card(props) {
 
 const styles = StyleSheet.create({
   card: {
+    padding:10,
     width: "100%",
-    height: 60,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

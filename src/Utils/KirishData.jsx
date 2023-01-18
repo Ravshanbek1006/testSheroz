@@ -16,7 +16,6 @@ class KirishData {
       })
       .then(json => {
         AsyncStorage.setItem('token', JSON.stringify(json.data.token.access));
-        console.log('token', json.data.token.access);
         return json;
       })
       .catch(err => {
@@ -27,7 +26,6 @@ class KirishData {
   }
 
   async PostUsersRegister(data) {
-    // console.log(response, 'res');
     let endPoint = 'sign-up';
     let response = await fetch(`${BaseUrl}/${endPoint}/`, {
       method: 'POST',

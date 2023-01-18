@@ -18,19 +18,19 @@ const Swipmassiv = [
     iconName: 'md-star-half',
     TextName: "Bilimingizni sinab ko'ring",
     TextParagrf:
-      'Matematikadan misol va masalalar tuplami uchun sinov va imtihon testlari mavzulari.',
+      'Matematikadan misol va masalalar to\'plami uchun sinov va imtihon testlari mavzulari.',
   },
   {
     iconName: 'settings-sharp',
-    TextName: 'Natijangizni tahlili qiling',
+    TextName: 'Natijangizni tahlil qiling',
     TextParagrf:
-      'Sinov va imtihon testlaridan to’plagan ballaringiz, to’g’ri va notog’ri beriglan jovoblaringizni ko’ra olish va tahlili qilish imkoniyati.',
+      'Sinov va imtihon testlaridan to’plagan ballaringiz, to’g’ri va notog’ri belgilagan jovoblaringizni ko’ra olish va tahlili qilish imkoniyati.',
   },
   {
     iconName: 'book',
     TextName: 'Abuturientlar uchun kitoblar',
     TextParagrf:
-      'Matematika fanidan kitoblari haqida ma’lumot, mavzulashtirilgan tekin va pullik elektron kitoblari, kitoblari sotiladigan do’konlar ro’yxati.',
+      'Matematika fanidan kitoblar haqida ma’lumot, mavzulashtirilgan tekin va pullik elektron kitoblar, kitoblar sotiladigan do’konlar ro’yxati.',
   },
   {
     iconName: 'ios-shield-checkmark-outline',
@@ -42,14 +42,14 @@ const Swipmassiv = [
     iconName: 'send-sharp',
     TextName: 'Bepul imkoniyatlar',
     TextParagrf:
-      'Dasturda bepul foydalanish uchun chegaralangan imkoniyalat mavjud.',
+      'Dasturda bepul foydalanish uchun chegaralangan imkoniyatlar mavjud.',
   },
-  {
-    iconName: 'cloud-offline-sharp',
-    TextName: 'Offline ishlatish imkoniyati',
-    TextParagrf:
-      'Yuklab olingan barcha sinov va imtihon testlarini ishlay olish imkoniyati va o’z kutubxonangizdagi elektron kitoblardan foydalanish',
-  },
+  // {
+  //   iconName: 'cloud-offline-sharp',
+  //   TextName: 'Offline ishlatish imkoniyati',
+  //   TextParagrf:
+  //     'Yuklab olingan barcha sinov va imtihon testlarini ishlay olish imkoniyati va o’z kutubxonangizdagi elektron kitoblardan foydalanish',
+  // },
 ];
 
 export default function Slider() {
@@ -83,7 +83,7 @@ const SwiperWrap = function (props) {
       <View style={{padding: 20}}>
         <Text style={styles.text}>{props.item.TextParagrf}</Text>
       </View>
-      {props.index == 5 && (
+      {props.index == 4 && (
         <TouchableOpacity onPress={StartWelcom}>
           <View style={styles.StartBtn}>
             <Text style={{fontSize: 20, color: '#fff', textAlign: 'center'}}>
@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
   StartBtn: {
     backgroundColor: StyleColor.GreenColor,
     width: 120,
-    height: 40,
     justifyContent: 'center',
     borderWidth: 2,
     borderColor: '#fff',

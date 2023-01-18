@@ -42,13 +42,11 @@ export default function Matematika(props) {
       if (item != null) {
         setData(item);
       }
-      console.log("item", item);
       // setIconName("check-circle")
     });
 
     await AsyncStorage.getItem('Ishlandi').then(data => {
       let item = JSON.parse(data);
-      console.log(data);
 
       if (item != null) {
         setIshlangan(item);
@@ -61,7 +59,6 @@ export default function Matematika(props) {
 
 
 
-    console.log("Ishlangan", Ishlangan);
 
     
 
@@ -70,7 +67,6 @@ export default function Matematika(props) {
 
       if (aaa) {
         Ishlangan.map((element) => {
-          console.log(element);
           if (element.TestID == id) {
             navigation.navigate('QaytaNatijaniKorish', {
               soni: element.soni,

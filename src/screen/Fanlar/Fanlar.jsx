@@ -33,11 +33,9 @@ async function GetSubject() {
       el.Minute = null
   })
   setCategory(mass)
-  console.log(Category);
 }
  
 function GoTheme() {
-  console.log("ishladi");
   navigation.navigate("variant", { "title": Category[0] }) 
 }
 

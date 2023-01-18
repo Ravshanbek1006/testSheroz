@@ -6,6 +6,8 @@ import Back from '../../components/Back/Back'
 import SetingsCard from '../../components/Card/SetingsCard'
 import KirishData from '../../Utils/KirishData'
 import offlineQuiz from '../../Utils/offlineQuiz'
+import GetBooks from '../../Utils/GetBooks'
+import PageNameCard from '../../components/Card/PageNameCard'
 
 
 export default function E_Kitoblar(props) {
@@ -16,21 +18,21 @@ export default function E_Kitoblar(props) {
     Book()
   }, [])
 
-async  function Book(params) {
-    let mass = await offlineQuiz.Category()
-    // mass = JSON.parse(mass)
-     setKitoblar(mass[0].children[0].children)
+async  function Book() {
+    let mass = await GetBooks.GetBook()
+     setKitoblar(mass)
   }
   
 
   return (
     <View style={styles.body}>
+      <PageNameCard title ="Books"/>
       <Back/>
       <ScrollView>
         {
-          (Kitoblar.length > 0) && Kitoblar.map((item,index) => {
+          (Kitoblar) && Kitoblar.map((item,index) => {
             return (
-              <Card key={index} text={item.title} icon="arrow-right" icon2="list" PDFLink={item.book_downloads[0].download} />
+              <Card key={index} text={item.title} icon="arrow-right" icon2="list" pageName="Kitob_nomi" PDFLink={item.children}/>
             )
           })
         }

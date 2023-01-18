@@ -16,7 +16,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function TestniYakunlash(props) {
 
-    console.log(props.route.params);
 
     const [modalVisible, setModalVisible] = useState(false);
     const [AllResult, setAllResult] = useState([

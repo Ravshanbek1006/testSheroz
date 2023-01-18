@@ -42,7 +42,6 @@ const Register = () => {
       password2: password2,
       phone: Phone,
     });
-    console.log(Register);
 
     if (
       Register.message == 'You should login' ||
@@ -53,7 +52,7 @@ const Register = () => {
       AsyncStorage.setItem('Parol', password2);
       AsyncStorage.setItem('UserName', Name);
       AsyncStorage.setItem('Phone', Phone);
-      navigation.navigate('TabNavigator');
+      navigation.navigate('Login');
     }
     if (Register.full_name) {
       // frontni o'zidan bo'lsin
@@ -109,6 +108,7 @@ const Register = () => {
                 color="#fff"
               />
             </View>
+
             <View style={styles.mainInput}>
               <View
                 style={{
@@ -128,6 +128,7 @@ const Register = () => {
                 color="#fff"
               />
             </View>
+
             <View style={styles.mainInput}>
               <View
                 style={{
@@ -146,6 +147,18 @@ const Register = () => {
                 placeholderTextColor={'#fff'}
                 color="#fff"
               />
+              <TouchableOpacity
+                onPress={() => {
+                  setShow(prev => !prev);
+                }}>
+                <View style={{ height: 50, justifyContent: "center", paddingStart: 3 }}>
+                  {show ? (
+                    <Ionicons name="eye-off-outline" size={35} color={'#fff'} />
+                  ) : (
+                    <Ionicons name="eye-outline" size={35} color={'#fff'} />
+                  )}
+                </View>
+              </TouchableOpacity>
             </View>
 
             <View style={styles.mainInput}>
@@ -161,24 +174,20 @@ const Register = () => {
                 onChangeText={e => setpassword2(e)}
                 style={styles.input}
                 secureTextEntry={show}
+                
                 type="password"
                 placeholder={'Parolni Tasdiqlang'}
                 placeholderTextColor={'#fff'}
                 color="#fff"
               />
             </View>
+
             <TouchableOpacity
               style={styles.show}
               onPress={() => {
                 setShow(prev => !prev);
               }}>
-              <Text>
-                {show ? (
-                  <Ionicons name="eye-off-outline" size={25} color={'#fff'} />
-                ) : (
-                  <Ionicons name="eye-outline" size={25} color={'#fff'} />
-                )}
-              </Text>
+              
             </TouchableOpacity>
           </View>
         </View>
@@ -193,7 +202,7 @@ const Register = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.help}>Yordam Kerakmi?</Text>
+        <Text style={styles.help}></Text>
       </View>
     </SafeAreaView>
   );
@@ -237,6 +246,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 20,
+    width: "100%",
+    // backgroundColor:"red",
+    display:'flex',
+    justifyContent:"flex-start",
+    paddingHorizontal:10
   },
   help: {
     color: StyleColor.backgroundColorMain,

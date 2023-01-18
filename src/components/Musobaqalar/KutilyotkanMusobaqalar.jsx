@@ -52,8 +52,6 @@ export default function KutilyotkanMusobaqalar() {
         const date = new Date(unixTimeZero)
         const year = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDay()
         const hour = date.getHours() + ":" + date.getMinutes()
-        console.log(KutilayotganTestlar[0].date_created);
-        console.log(year, hour);
         setMonth(year)
         setTime(hour)        
       }

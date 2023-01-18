@@ -2,7 +2,6 @@ import  { BaseUrl2 } from './FetchData';
 
 class Competition {
     async CompetitionRegister(data) {
-        // console.log(response, 'res');
         let endPoint = 'join';
         let response = await fetch(`${BaseUrl2}/${endPoint}/`, {
             method: 'POST',

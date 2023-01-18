@@ -30,7 +30,6 @@ const CHangePas = () => {
 
   useEffect(() => {
     AsyncStorage.getItem('Parol').then(val => {
-      console.log(val);
       setOldPass(val);
     });
     AsyncStorage.getItem('token').then(val => {
@@ -42,7 +41,6 @@ const CHangePas = () => {
   }, []);
 
   const savePass = () => {
-    console.log('oldPass', oldPass);
 
     // let newResult = PassChange.PasswordChange({
     //   old_pass: oldPass,

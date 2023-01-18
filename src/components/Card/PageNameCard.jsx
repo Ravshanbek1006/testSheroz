@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
-import StyleColor from "../../assets/styles/color"
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
 import { useNavigation } from '@react-navigation/native'
 
 export default function PageNameCard(props) {
@@ -22,13 +20,14 @@ export default function PageNameCard(props) {
 
 const styles = StyleSheet.create({
     NameStyle: {
-        height: 60,
+        // height: 60,
         alignItems: "center",
         justifyContent: "center",
         position: "relative",
-        marginTop:10,
+        marginVertical:10,
     },
     textNameStyle: {
+        textAlign:'center',
         fontSize: 24,
         fontWeight: "800",
         color: "#111"

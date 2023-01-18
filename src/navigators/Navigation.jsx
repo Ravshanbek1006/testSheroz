@@ -25,7 +25,7 @@ import Pdf from '../components/Pdf/Pdf'
 import Fanlar from '../screen/Fanlar/Fanlar'
 import QaytaNatijaKorish from '../screen/QaytaKorish/QaytaNatijaKorish'
 import Variant from '../screen/Variat/Variant'
-
+import Kitob_nomi from '../screen/E_Kitoblar/Kitob_nomi'
 
 
 export default function navigation() {
@@ -41,6 +41,7 @@ export default function navigation() {
         <Stack.Screen name="variant" component={Variant} options={{ headerShown: false }} />
         <Stack.Screen name='TabNavigator' component={TabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name='Pdf' component={Pdf} options={{ headerShown: false }} />
+        <Stack.Screen name='Kitob_nomi' component={Kitob_nomi} options={{ headerShown: false }} />
         <Stack.Screen name='Natijanikorish' component={Natijanikorish} />
         <Stack.Screen name='offlineTest' component={offlineTest} options={{ headerShown: false }} />
         <Stack.Screen name='Boshlash' component={BoshlashPage} options={{ headerShown: false }} />

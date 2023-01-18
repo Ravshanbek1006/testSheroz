@@ -8,62 +8,65 @@ import Back from '../../components/Back/Back'
 export default function Online_test() {
     
   return (
-    <View style={styles.body}>
-      <Back/>
-      <Text style={{ fontSize: 18, color: "black" }}>LOGO jamoasi sizni imtihonlarga qacnahlik tayyor ekanligingizni tekshirish uchun doimiy Online testlar tashkillashtirib bormoqda.s</Text>
-      <View style={styles.card}>
-        <Text style={styles.title}>Navbatdagi test vaqti</Text>
-        <Text style={styles.subtitle}><FontAwesome5 name="clock" size={15} /> 05 - 02 - 2022 | 18:00 - 21:00</Text>
-        <Text style={styles.title}>Shakli </Text>
-        <Text style={styles.subtitle}><FontAwesome5 name="clock" size={15} /> Online</Text>
-        <Text style={styles.title}>Narxi bo’lmaydi</Text>
-        <Text style={styles.subtitle}><FontAwesome5 name="clock" size={15} /> 7000 so'm</Text>
-      </View>
-      <View style={{ alignItems: "center" }}>
-        <Text style={{ fontSize: 25, color: "black" }}>Online test boshlanishiga</Text>
-      </View>
-      <View style={{flexDirection:"row", marginVertical:30}}>
-        <View style={{ alignItems: "center" }}>
-          <View style={styles.box}>
-            <Text style={styles.box_title}>08</Text>
-          </View>
-          <Text style={styles.box_subtitle}>kun</Text>
-        </View>
-        <View>
-          <Text style={{fontSize:50, color: StyleColor.GreenColor, marginHorizontal:10}}>:</Text>
-        </View>
-        <View style={{ alignItems: "center" }}>
-          <View style={styles.box}>
-            <Text style={styles.box_title}>57</Text>
-          </View>
-          <Text style={styles.box_subtitle}>soat</Text>
-        </View>
-        <View>
-          <Text style={{fontSize:50, color: StyleColor.GreenColor, marginHorizontal:10}}>:</Text>
-        </View>
-        <View style={{ alignItems: "center" }}>
-          <View style={styles.box}>
-            <Text style={styles.box_title}>32</Text>
-          </View>
-          <Text style={styles.box_subtitle}>daqiqa</Text>
-        </View>
-        <View>
-          <Text style={{fontSize:50, color: StyleColor.GreenColor, marginHorizontal:10}}>:</Text>
-        </View>
-        <View style={{ alignItems: "center" }}>
-          <View style={styles.box}>
-            <Text style={styles.box_title}>12</Text>
-          </View>
-          <Text style={styles.box_subtitle}>soniya</Text>
-        </View>
-      </View>
-      <View style={{alignItems:"center"}}>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={{color:StyleColor.backgroundColorMain, fontSize:18, fontWeight:"500"}}>Ro’yxatdan o’tish</Text>
-        </TouchableOpacity>
-        <Text style={{color:StyleColor.GreenColor, fontSize:18, marginVertical:10}}>Natijalarni ko’rish</Text>
-      </View>
+    <View style={{justifyContent:"center", flex:1, alignItems:"center"}}>
+      <Text style={{fontSize:30, color:"gray", fontWeight:"600", fontFamily:"roboto"}}>Coming Soon...</Text>
     </View>
+    // <View style={styles.body}>
+    //   <Back/>
+    //   <Text style={{ fontSize: 18, color: "black" }}>LOGO jamoasi sizni imtihonlarga qacnahlik tayyor ekanligingizni tekshirish uchun doimiy Online testlar tashkillashtirib bormoqda.s</Text>
+    //   <View style={styles.card}>
+    //     <Text style={styles.title}>Navbatdagi test vaqti</Text>
+    //     <Text style={styles.subtitle}><FontAwesome5 name="clock" size={15} /> 05 - 02 - 2022 | 18:00 - 21:00</Text>
+    //     <Text style={styles.title}>Shakli </Text>
+    //     <Text style={styles.subtitle}><FontAwesome5 name="clock" size={15} /> Online</Text>
+    //     <Text style={styles.title}>Narxi bo’lmaydi</Text>
+    //     <Text style={styles.subtitle}><FontAwesome5 name="clock" size={15} /> 7000 so'm</Text>
+    //   </View>
+    //   <View style={{ alignItems: "center" }}>
+    //     <Text style={{ fontSize: 25, color: "black" }}>Online test boshlanishiga</Text>
+    //   </View>
+    //   <View style={{flexDirection:"row", marginVertical:30}}>
+    //     <View style={{ alignItems: "center" }}>
+    //       <View style={styles.box}>
+    //         <Text style={styles.box_title}>08</Text>
+    //       </View>
+    //       <Text style={styles.box_subtitle}>kun</Text>
+    //     </View>
+    //     <View>
+    //       <Text style={{fontSize:50, color: StyleColor.GreenColor, marginHorizontal:10}}>:</Text>
+    //     </View>
+    //     <View style={{ alignItems: "center" }}>
+    //       <View style={styles.box}>
+    //         <Text style={styles.box_title}>57</Text>
+    //       </View>
+    //       <Text style={styles.box_subtitle}>soat</Text>
+    //     </View>
+    //     <View>
+    //       <Text style={{fontSize:50, color: StyleColor.GreenColor, marginHorizontal:10}}>:</Text>
+    //     </View>
+    //     <View style={{ alignItems: "center" }}>
+    //       <View style={styles.box}>
+    //         <Text style={styles.box_title}>32</Text>
+    //       </View>
+    //       <Text style={styles.box_subtitle}>daqiqa</Text>
+    //     </View>
+    //     <View>
+    //       <Text style={{fontSize:50, color: StyleColor.GreenColor, marginHorizontal:10}}>:</Text>
+    //     </View>
+    //     <View style={{ alignItems: "center" }}>
+    //       <View style={styles.box}>
+    //         <Text style={styles.box_title}>12</Text>
+    //       </View>
+    //       <Text style={styles.box_subtitle}>soniya</Text>
+    //     </View>
+    //   </View>
+    //   <View style={{alignItems:"center"}}>
+    //     <TouchableOpacity style={styles.btn}>
+    //       <Text style={{color:StyleColor.backgroundColorMain, fontSize:18, fontWeight:"500"}}>Ro’yxatdan o’tish</Text>
+    //     </TouchableOpacity>
+    //     <Text style={{color:StyleColor.GreenColor, fontSize:18, marginVertical:10}}>Natijalarni ko’rish</Text>
+    //   </View>
+    // </View>
   )
 }
 

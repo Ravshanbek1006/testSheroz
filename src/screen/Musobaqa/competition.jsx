@@ -58,7 +58,6 @@ const Competition = (props) => {
     });
 
     let API = JSON.parse(AddPeople)
-    console.log(API);
   }
 
   return (

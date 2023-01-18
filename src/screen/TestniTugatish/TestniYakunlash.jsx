@@ -17,11 +17,9 @@ import SendData from '../../Utils/SendData';
 
 export default function TestniYakunlash(props) {
 
-  console.log("props.route.params", props.route.params.INCRans);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [PostMass, setPostMass] = useState([]);
-  const [Token, setToken] = useState('');
 
 
   const [AllResult, setAllResult] = useState([
@@ -42,7 +40,6 @@ export default function TestniYakunlash(props) {
       },
   )
 
-  console.log("SSS", AllResult);
 
 
   function GetQuizID() {
@@ -69,9 +66,21 @@ export default function TestniYakunlash(props) {
     Holatlar();
   }, []);
 
+  let token = ''
+
+
+  getToken()
+
+ async function getToken() {
+   await AsyncStorage.getItem("token").then(val => {
+     token = JSON.parse(val)
+    });
+  }
  
 
-  function Holatlar() {
+ async function Holatlar() {
+   
+
     if (persent < 55) {
       setHolat('Qoniqarsiz');
     }
@@ -90,9 +99,7 @@ export default function TestniYakunlash(props) {
     navigation.navigate('Natijanikorish', { value: props.route.params.Natija });
   }
 
-  AsyncStorage.getItem('token').then(val => {
-    setToken(val);
-  });
+ 
 
 
 
@@ -167,7 +174,7 @@ export default function TestniYakunlash(props) {
                       category: Number(props.route.params.TestID),
                       duration: "0",
                       answers_album: PostMass
-                    }, Token)
+                    }, token)
 
 
 
