@@ -27,7 +27,7 @@ export default function StartingPage() {
   });
   if (Token) {
     if (api || api1 == '123') {
-      // navigation.navigate('TabNavigator');
+      navigation.navigate('TabNavigator');
     } else {
       navigation.navigate('Slider');
     }

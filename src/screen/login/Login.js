@@ -68,6 +68,8 @@ const Login = () => {
   const GoLogin = async () => {
     setLoad(true);
 
+    AsyncStorage.setItem("Parol", password)
+
     let login = await KirishData.PostUsersLogin({
       phone: Phone,
       password: password,

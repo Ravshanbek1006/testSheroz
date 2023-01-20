@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class changePess {
   async PasswordChange(data) {
+    console.log("data", data);
     let endPoint = `change-password/${data.phone}/`;
     let response = await fetch(`${BaseUrl}/${endPoint}`, {
       method: 'PUT',

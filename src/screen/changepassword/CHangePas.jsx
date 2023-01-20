@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Alert,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -17,6 +18,7 @@ import Back from '../../components/Back/Back';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PassChange from '../../Utils/PassChange';
 import {Modal} from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 const CHangePas = () => {
   const [show, setShow] = useState(true);
@@ -24,36 +26,39 @@ const CHangePas = () => {
   const [oldPass, setOldPass] = useState('');
   const [newPass, setNewPass] = useState('');
   const [newPass1, setNewPass1] = useState('');
-  const [Token, setToken] = useState('');
+  let Token = ''
+  let EskiParol = ''
   const [Number, setNumber] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-
-  useEffect(() => {
-    AsyncStorage.getItem('Parol').then(val => {
-      setOldPass(val);
-    });
-    AsyncStorage.getItem('token').then(val => {
-      setToken(val);
-    });
-    AsyncStorage.getItem('Phone').then(val => {
+  const navigator = useNavigation()
+    
+     AsyncStorage.getItem('Phone').then(val => {
       setNumber(val);
     });
-  }, []);
 
-  const savePass = () => {
+   AsyncStorage.getItem('token').then(val => {
+    Token = JSON.parse(val)
+  });
 
-    // let newResult = PassChange.PasswordChange({
-    //   old_pass: oldPass,
-    //   new_pass: newPass,
-    //   new_pass1: newPass1,
-    //   token: Token,
-    //   phone: Number,
-    // });
+  const savePass = async() => {
+  
+  let newResult = await PassChange.PasswordChange({
+    old_pass: oldPass,
+    new_pass: newPass,
+    new_pass1: newPass1,
+    token: Token,
+    phone: Number,
+  });
+  console.log(newResult);
 
-    // if(newResult){
+  if (newResult.success == true) {
+    AsyncStorage.setItem("Parol", newPass)
+    navigator.navigate("Login")
+  }else{
+    Alert.alert("Kiritilgan ma'lumotlar to'gri emas qayatadan urinib koring")
+  }
+};
 
-    // }
-  };
   return (
     <SafeAreaView style={styles.container}>
       <Back />
@@ -88,6 +93,7 @@ const CHangePas = () => {
           </View>
         </View>
       </Modal>
+
       <Back />
       <PageNameCard title="Parolni o'zgartirish" />
       <View>
@@ -105,7 +111,6 @@ const CHangePas = () => {
           />
           <TextInput
             placeholder={'Oldingi Parolni Kiriting'}
-            // value={oldPass}
             placeholderTextColor={'#a2a0a8'}
             secureTextEntry={show}
             style={styles.Input}
