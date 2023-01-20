@@ -104,7 +104,7 @@ export default function Home() {
                 <Image style={styles.imgStyle} resizeMode="cover" source={require("../../assets/images/Selfie.png")} />
               </View>
             </TouchableOpacity> */}
-          <TouchableHighlight onPress={TabPress}>
+          <TouchableHighlight onPress={TabPress} style = {{ borderRadius:25}}>
             {
               (Pic == null) ? <Image style={styles.imgStyle} resizeMode="cover" source={require("../../assets/images/Selfie.png")} /> : <Avatar.Image style={styles.ImageBox} size={50} source={{ uri: 'data:image/png;base64,' + Pic }}/>
             }
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     borderWidth: 2,
-    borderColor: StyleColor.GreenColor
+    borderColor: StyleColor.GreenColor,
   },
   hederStyle: {
     flexDirection: "row",

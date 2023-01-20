@@ -27,7 +27,7 @@ export default function StartingPage() {
   });
   if (Token) {
     if (api || api1 == '123') {
-      navigation.navigate('TabNavigator');
+      // navigation.navigate('TabNavigator');
     } else {
       navigation.navigate('Slider');
     }
@@ -40,18 +40,18 @@ export default function StartingPage() {
       <StatusbarGreen/>
       <View
         style={{
-          width: 200,
-          height: 200,
-          borderRadius: 100,
+          width: 250,
+          height: 250,
+          borderRadius: 125,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: 'white',
-          padding: 20,
+          backgroundColor: '#333',
+          padding: 50,
           marginBottom: 50,
         }}>
         <Image
           style={{width: '100%', height: '100%', resizeMode: 'contain'}}
-          source={require('../../assets/images/logo.png')}
+          source={require('../../assets/images/logo11222.png')}
         />
       </View>
       <Text style={styles.SubTitle}>Oliy o’quv yurtiga tayyorlanish</Text>

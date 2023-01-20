@@ -89,15 +89,11 @@ const Register = () => {
           <Fontisto name="close-a" size={23} color={'#fff'}/>
         </View> */}
         <RegistrHedercard title="Ro’yxatdan o’tish" />
-        <View style={{justifyContent: 'center'}}>
+        <View>
           <View>
             <View style={styles.mainInput}>
               <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 50,
-                }}>
+                style={style = styles.inputIconStyle}>
                 <Entypo name={'pencil'} size={30} color={'#FFF'} />
               </View>
               <TextInput
@@ -111,11 +107,8 @@ const Register = () => {
 
             <View style={styles.mainInput}>
               <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 50,
-                }}>
+                style={style = styles.inputIconStyle}
+               >
                 <Entypo name={'phone'} size={30} color={'#FFF'} />
               </View>
               <TextInput
@@ -131,11 +124,8 @@ const Register = () => {
 
             <View style={styles.mainInput}>
               <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 50,
-                }}>
+                style={style = styles.inputIconStyle}
+              >
                 <Entypo name={'lock'} size={30} color={'#FFF'} />
               </View>
               <TextInput
@@ -147,27 +137,27 @@ const Register = () => {
                 placeholderTextColor={'#fff'}
                 color="#fff"
               />
-              <TouchableOpacity
-                onPress={() => {
-                  setShow(prev => !prev);
-                }}>
-                <View style={{ height: 50, justifyContent: "center", paddingStart: 3 }}>
-                  {show ? (
-                    <Ionicons name="eye-off-outline" size={35} color={'#fff'} />
-                  ) : (
-                    <Ionicons name="eye-outline" size={35} color={'#fff'} />
-                  )}
-                </View>
-              </TouchableOpacity>
+              <View style={style = styles.showStyle} >
+                <TouchableOpacity
+                  onPress={() => {
+                    setShow(prev => !prev);
+                  }}>
+                  <View style={{ height: 50, justifyContent: "center", paddingStart: 3 }}>
+                    {show ? (
+                      <Ionicons name="eye-off-outline" size={30} color={'#fff'} />
+                    ) : (
+                      <Ionicons name="eye-outline" size={30} color={'#fff'} />
+                    )}
+                  </View>
+                </TouchableOpacity>
+              </View>
+              
             </View>
 
             <View style={styles.mainInput}>
               <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 50,
-                }}>
+                style={style = styles.inputIconStyle}
+              >
                 <Entypo name={'lock'} size={30} color={'#FFF'} />
               </View>
               <TextInput
@@ -180,6 +170,9 @@ const Register = () => {
                 placeholderTextColor={'#fff'}
                 color="#fff"
               />
+              <View style = {style = styles.showStyle} >
+
+              </View>
             </View>
 
             <TouchableOpacity
@@ -221,19 +214,19 @@ const styles = StyleSheet.create({
     // flexDirection:"row",
     justifyContent: 'space-between',
   },
-  mainTitle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  title: {
-    color: StyleColor.backgroundColorMain,
-    fontSize: 25,
-    fontWeight: '700',
-  },
+  // mainTitle: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   alignItems: 'center',
+  // },
+  // title: {
+  //   color: StyleColor.backgroundColorMain,
+  //   fontSize: 25,
+  //   fontWeight: '700',
+  // },
   input: {
     height: 53,
-    width: 304,
+    width: Dimensions.get("window").width -120,
     borderWidth: 1,
     color: '#fff  ',
     borderRadius: 5,
@@ -246,11 +239,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 20,
-    width: "100%",
-    // backgroundColor:"red",
+    width: Dimensions.get("window").width-40,
     display:'flex',
     justifyContent:"flex-start",
-    paddingHorizontal:10
   },
   help: {
     color: StyleColor.backgroundColorMain,
@@ -277,6 +268,18 @@ const styles = StyleSheet.create({
     color: StyleColor.GreenColor,
     textAlign: 'center',
   },
+  inputIconStyle:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    width:40,
+
+  },
+  showStyle:{
+    width:40,
+    justifyContent:"center",
+    alignItems:"center"
+
+  }
 });
 
 export default Register;

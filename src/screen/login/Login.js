@@ -7,7 +7,8 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
+  Dimensions
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import StyleColor from '../../assets/styles/color';
@@ -171,7 +172,7 @@ const Login = () => {
                 style={{
                   justifyContent: 'center',
                   alignItems: 'center',
-                  width: 50,
+                  width: 40,
                 }}>
                 <Entypo name={'phone'} size={30} color={'#FFF'} />
               </View>
@@ -192,7 +193,7 @@ const Login = () => {
                 style={{
                   justifyContent: 'center',
                   alignItems: 'center',
-                  width: 50,
+                  width: 40,
                 }}>
                 <Entypo name={'lock'} size={30} color={'#FFF'} />
               </View>
@@ -205,18 +206,20 @@ const Login = () => {
                 placeholderTextColor={"#fff"}
                 color="#fff"
               />
+              <View style = {{width:40, justifyContent:"center", alignItems:"center"}}>
               <TouchableOpacity
                 onPress={() => {
                   setShow(prev => !prev);
                 }}>
-              <View style={{height:50,justifyContent: "center", paddingStart: 5 }}>
+              <View>
                 {show ? (
-                  <Ionicons name="eye-off-outline" size={35} color={'#fff'} />
+                  <Ionicons name="eye-off-outline" size={30} color={'#fff'} />
                 ) : (
-                  <Ionicons name="eye-outline" size={35} color={'#fff'} />
+                  <Ionicons name="eye-outline" size={30} color={'#fff'} />
                 )}
               </View>
               </TouchableOpacity>
+              </View>
             </View>
             
               {
@@ -257,16 +260,15 @@ const styles = StyleSheet.create({
   mainInput: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: "100%",
+    width: Dimensions.get("window").width - 40,
     marginTop:20,
     display: 'flex',
     justifyContent: "flex-start",
-    paddingHorizontal: 10
   },
 
   input: {
     // height: ,
-    width: 304,
+    width: Dimensions.get("window").width - 120,
     // marginTop: 20,
     borderWidth: 1,
     color: '#fff',

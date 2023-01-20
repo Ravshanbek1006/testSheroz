@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, SafeAreaView, Text, ScrollView, TouchableOpacity, TextInput, Modal, Pressable  } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text, ScrollView, TouchableOpacity, TextInput, Modal, Pressable, Dimensions  } from 'react-native';
 import StyleColor from "../../assets/styles/color"
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import StatusbarGreen from '../../components/StatusBar/StatusbarGreen';
@@ -61,26 +61,21 @@ const Competition = (props) => {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: StyleColor.GreenColor, paddingTop:30,  }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: StyleColor.GreenColor, justifyContent:"space-between"}}>
       <Back/>
       <StatusbarGreen/>
-      <ScrollView style = {{backgroundColor:"yellow", padding:20}} >
-      <View style = {{height:"100%", justifyContent:"space-between",backgroundColor:"teal",padding:10}} >
-          <View style ={{backgroundColor:"green"}} >
-            <Text style={{ textAlign: "center", color: StyleColor.backgroundColorMain, fontSize: 25, fontWeight: "600" }}>Musobaqa #A1</Text>
-          </View>
+      <View style ={{ marginVertical: 30 }} >
+           <Text style={{ textAlign: "center", color: StyleColor.backgroundColorMain, fontSize: 25, fontWeight: "600" }}>Musobaqa #A1</Text>
+      </View>
+      {/* <View> */}
 
+      <ScrollView contentContainerStyle = {{ backgroundColor:StyleColor.GreenColor, borderTopEndRadius:40, borderTopLeftRadius:40}} >
           <View style={styles.card}>
             <Text style={styles.card_title}>{name}</Text>
-
             <View style={styles.pay}>
               <FontAwesome5Icon size={30} name="wallet" color={StyleColor.GreenColor} />
               <Text style={{ marginHorizontal: 10, fontSize: 17 }}>Tekin</Text>
-
             </View>
-
-
-
             <View style={styles.card_body}>
               <View style={{ flexDirection: "row", display: 'flex', justifyContent: "space-between", }}>
                 <Text style={{ fontSize: 19, fontWeight: "600", color: "black" }}>Ro’yxatdan o’tganlar</Text>
@@ -129,8 +124,10 @@ const Competition = (props) => {
               </View>
             </View>
           </View>
-      </View>
+      
       </ScrollView>
+      {/* </View> */}
+
     </SafeAreaView>
   );
 }
@@ -138,12 +135,14 @@ const Competition = (props) => {
 const styles = StyleSheet.create({
   card: {
     width: '100%',
-    height: "100%",
-    backgroundColor: "red",
+    // height: "100%",
+    backgroundColor: "#fff",
     borderRadius: 40,
+    // borderTopEndRadius:40,
+    // borderTopLeftRadius:40,
     paddingHorizontal: 20,
     paddingVertical: 20,
-    marginBottom:0
+    // marginBottom:10
   },
   card_title: {
     textAlign: "center",
@@ -180,7 +179,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   btn: {
-    marginTop: 20,
+    marginTop: 40,
   },
   BtnStyle: {
     backgroundColor: StyleColor.GreenColor,

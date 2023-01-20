@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 
@@ -10,7 +10,9 @@ export default function PageNameCard(props) {
     }
     return (
         <View style={styles.NameStyle} >
-            <Text style={styles.textNameStyle}> {props.title} </Text>
+            <View style={styles.hederNameStyle}>
+              <Text style={styles.textNameStyle}> {props.title} </Text>
+            </View>
             <TouchableOpacity style={styles.backIcon} onPress = {onPress} >
                 <Image source={require("../../assets/images/RightPng.png")} style = {styles.ImgIconStyle} />
             </TouchableOpacity>
@@ -34,10 +36,13 @@ const styles = StyleSheet.create({
     },
     backIcon: {
         position: "absolute",
-        left: 20
+        left: 0
     },
     ImgIconStyle:{
-        width:30,
+        width:35,
         height:24
+    },
+    hederNameStyle:{
+        width:Dimensions.get("window").width - 100,
     }
 })

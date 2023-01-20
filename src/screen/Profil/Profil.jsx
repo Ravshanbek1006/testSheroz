@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   Modal,
   Image,
+  Linking
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import StyleColor from '../../assets/styles/color';
@@ -26,6 +27,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import TouchID from 'react-native-touch-id';
 import UpdateProfile from '../../Utils/UpdateProfile';
+
 
 export default function Profil() {
   const [text, onChangeText] = useState([]);
@@ -163,7 +165,8 @@ export default function Profil() {
           <TouchableHighlight
             onPress={() => {
               UploadImage();
-            }}>
+            }}
+            style = {{ borderRadius:75}}>
             <Avatar.Image
               style={styles.ImageBox}
               size={150}
@@ -246,7 +249,6 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 2,
     position: 'relative',
-    marginVertical: 20,
   },
   PushImage: {
     position: 'absolute',

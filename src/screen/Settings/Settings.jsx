@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Linking } from 'react-native'
 import React from 'react'
 import PageNameCard from '../../components/Card/PageNameCard'
 import Fallow from "../../components/Card/Follow"
 import StatusbarWhite from '../../components/StatusBar/StatusbarWhite'
 import SetingsCard from '../../components/Card/SetingsCard'
 import StyleColor from '../../assets/styles/color';
-import { useNavigation } from '@react-navigation/native'
+import { Link, useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const menuItems = [
@@ -48,6 +48,7 @@ export default function Settings() {
     AsyncStorage.removeItem("Rasm")
     navigation.navigate("Welcome")
   }
+  
 
   return (
     <SafeAreaView style={styles.container} >
@@ -70,10 +71,21 @@ export default function Settings() {
           Follow Us
         </Text>
         <View style={styles.FallowContainer} >
-          <Fallow iconName="twitter" />
-          <Fallow iconName="facebook" />
-          <Fallow iconName="telegram" />
-          <Fallow iconName="instagram" />
+          <TouchableOpacity onPress={() => {
+            Linking.openURL('https://www.facebook.com/profile.php?id=100089580103049')
+          }}>
+              <Fallow iconName="facebook" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            Linking.openURL("https://t.me/sofftest")
+          }}>
+            <Fallow iconName="telegram" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            Linking.openURL("https://instagram.com/soff_test")
+          }}>
+            <Fallow iconName="instagram" />
+          </TouchableOpacity>
         </View>
         <View style={styles.TextLogOut} >
           <TouchableOpacity onPress={LogOut} style={styles.TouchableStyle} >
@@ -101,7 +113,7 @@ const styles = StyleSheet.create({
   },
   FallowContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     marginTop: 15
   },
   TextLogOut: {
