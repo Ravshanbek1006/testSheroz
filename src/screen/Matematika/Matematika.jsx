@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   BackHandler,
   Alert,
+  Dimensions,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import StyleColor from '../../assets/styles/color';
@@ -18,6 +19,7 @@ import offlineQuiz from '../../Utils/offlineQuiz';
 import {useNavigation} from '@react-navigation/native';
 import PageNameCard from '../../components/Card/PageNameCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ActivityIndicator } from 'react-native-paper';
 
 export default function Matematika(props) {
 
@@ -107,7 +109,7 @@ export default function Matematika(props) {
       <StatusbarWhite />
       <PageNameCard title={props.route.params.title.title} />
       <ScrollView>
-        {Category.length > 0 &&
+        {Category.length > 0 ?
           Category.map((item, index) => {
             Ishlangan &&
               Ishlangan.map(element => {
@@ -146,7 +148,10 @@ export default function Matematika(props) {
                 </View>
               </TouchableOpacity>
             );
-          })}
+          }) : <View style={[styles.container, styles.horizontal]}>
+            <ActivityIndicator size="large" color="teal" />
+          </View>
+        } 
       </ScrollView>
     </View>
   );
@@ -177,4 +182,16 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderTopColor: '#11111110',
   },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    marginTop: Dimensions.get("window").height * 0.3
+  },
+  horizontal: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10,
+    alignItems: "center"
+
+  }
 });

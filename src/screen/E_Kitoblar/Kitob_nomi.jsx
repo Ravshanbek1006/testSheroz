@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, TextInput, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TextInput, ScrollView, Dimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import StyleColor from "../../assets/styles/color"
 import Card from "../../components/Card/Cards"
@@ -17,11 +17,13 @@ export default function E_Kitoblar(props) {
             <Back />
             <ScrollView>
                 {
-                    (Kitoblar) && Kitoblar.map((item, index) => {
+                    (Kitoblar) ? Kitoblar.map((item, index) => {
                         return (
                             <Card key={index} text={item.title} icon="arrow-right" icon2="list" pageName="Pdf" PDFLink={item.download} />
                         )
-                    })
+                    }): <View style={[styles.container, styles.horizontal]}>
+                    <ActivityIndicator size="large" color="teal" />
+                </View>
                 }
             </ScrollView>
         </View>
@@ -34,4 +36,16 @@ const styles = StyleSheet.create({
         backgroundColor: StyleColor.backgroundColorMain,
         padding: 20
     },
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        marginTop: Dimensions.get("window").height * 0.3
+    },
+    horizontal: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        padding: 10,
+        alignItems: "center"
+
+    }
 })

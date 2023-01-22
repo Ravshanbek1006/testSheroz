@@ -14,11 +14,13 @@ import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SendData from '../../Utils/SendData';
+import { ActivityIndicator } from 'react-native-paper';
 
 export default function TestniYakunlash(props) {
 
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [Loader, setLoader] = useState(false);
   const [PostMass, setPostMass] = useState([]);
 
 
@@ -148,6 +150,8 @@ export default function TestniYakunlash(props) {
                 <TouchableOpacity
                   style={styles.buttonClose2}
                   onPress={async () => {
+                    setLoader(true)
+
                     let data = await AsyncStorage.getItem('Ishlandi').then(
                       item => {
                         return JSON.parse(item);
@@ -179,6 +183,7 @@ export default function TestniYakunlash(props) {
 
 
 
+
                     let malumot = await AsyncStorage.getItem('Finish').then(
                       item => {
                         return JSON.parse(item);
@@ -203,9 +208,11 @@ export default function TestniYakunlash(props) {
                         JSON.stringify(mass),
                       );
                     }
+
+
                     navigation.navigate('TabNavigator');
                   }}>
-                  <Text style={styles.textStyle1}>OK</Text>
+                  <Text style={styles.textStyle1}>{Loader ?  <ActivityIndicator size="small" color="teal" /> : "Ok"}</Text>
                 </TouchableOpacity>
               </View>
             </View>

@@ -11,6 +11,7 @@ import {
   Pressable,
   Alert,
   BackHandler,
+  Dimensions,
 } from 'react-native';
 import {Modal} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -213,7 +214,7 @@ const OfflineTest = props => {
         </View>
 
         <ScrollView contentContainerStyle={{alignItems: 'center'}}>
-          {Savollars ? (
+          {Savollars.length > 0 ? (
             Savollars.map((item, index) => {
               return (
                 <QuizCard
@@ -296,6 +297,7 @@ const styles = StyleSheet.create({
     flex: 1,
     zIndex: -1,
     backgroundColor: '#fff',
+    width:Dimensions.get("window").width
     // paddingHorizontal:10
   },
   TestNav: {
@@ -339,7 +341,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // marginTop: 22,
     // backgroundColor:"blue",
-    padding:20,
+    // padding:20,
     zIndex: 1,
   },
   modalView: {

@@ -26,14 +26,17 @@ import Back from '../../components/Back/Back';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import TouchID from 'react-native-touch-id';
+import { CommonActions } from '@react-navigation/native';
+
 import UpdateProfile from '../../Utils/UpdateProfile';
+import SendImage from '../../Utils/SendImage';
 
 
 export default function Profil() {
   const [text, onChangeText] = useState([]);
   const [number, onChangeNumber] = useState(0);
   const [oldNum, setOldNum] = useState(0);
-  const [Pic, setPic] = useState('');
+  const [Pic, setPic] = useState({});
   const [TOken, setTOken] = useState();
   const [Rasm, setRasm] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -78,7 +81,7 @@ export default function Profil() {
       } else if (response.assets[0].fileSize > 2097152) {
         Alert.alert('Rasm hajmi 2mb dan kop bolmasligi kerak');
       } else {
-        setPic(response.assets[0].base64);
+        setPic(response.assets[0]);
         setRasm(true);
       }
     });
@@ -91,8 +94,7 @@ export default function Profil() {
       token: TOken,
       oldNumber: oldNum,
     });
-
-    // const optionalConfigObject = {
+ // const optionalConfigObject = {
     //   title: 'Tasdiqlash majburiy', // Android
     //   imageColor: 'teal', // Android
     //   imageErrorColor: '#ff0000', // Android
@@ -118,11 +120,37 @@ export default function Profil() {
 
     // if (Touch == true) {
     // }
-    await AsyncStorage.setItem('Rasm', Pic);
+
+ 
+    await AsyncStorage.setItem('Rasm', Pic.base64);
     await AsyncStorage.setItem('UserName', text);
     await AsyncStorage.setItem('Phone', number);
     setModalVisible(!modalVisible);
   };
+
+    const reset = async () => {
+       navigation.dispatch(
+         CommonActions.reset({
+          index: 0,
+          routes: [{ name: 'Asosiy' }],
+        })
+      );
+
+
+      const formdata = new FormData()
+      formdata.append('file', {
+        uri: Pic.uri,
+        type: Pic.type,
+        name: Pic.fileName
+      })
+
+    let ress = await SendImage.SendImage(formdata, TOken, number)
+
+    console.log('====================================');
+      console.log(ress);
+    console.log('====================================');
+      // navigation.navigate('TabNavigator')
+    }  
 
   return (
     <SafeAreaView style={styles.Container}>
@@ -149,7 +177,7 @@ export default function Profil() {
               }}>
               <View>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('TabNavigator')}
+                  onPress={reset}
                   style={styles.buttonClose2}>
                   <Text style={styles.textStyle1}>OK</Text>
                 </TouchableOpacity>
@@ -170,7 +198,7 @@ export default function Profil() {
             <Avatar.Image
               style={styles.ImageBox}
               size={150}
-              source={{uri: 'data:image/png;base64,' + Pic}}
+              source={{ uri: 'data:image/png;base64,' + Pic?.base64}}
             />
           </TouchableHighlight>
           <View>

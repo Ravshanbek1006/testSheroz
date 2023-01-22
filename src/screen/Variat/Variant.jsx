@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, TextInput, ScrollView, TouchableOpacity, BackHandler, Alert } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TextInput, ScrollView, TouchableOpacity, BackHandler, Alert, Dimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import StyleColor from "../../assets/styles/color"
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
@@ -8,6 +8,7 @@ import offlineQuiz from '../../Utils/offlineQuiz'
 import { useNavigation } from '@react-navigation/native'
 import PageNameCard from '../../components/Card/PageNameCard'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { ActivityIndicator } from 'react-native-paper'
 
 
 export default function Variant(props) {
@@ -25,7 +26,7 @@ export default function Variant(props) {
       <PageNameCard title={props.route.params.title.title} />
       <ScrollView>
         {
-          (Category.length > 0) && Category.map((item, index) => {
+          (Category.length > 0) ? Category.map((item, index) => {
             return (
               <TouchableOpacity onPress={() => GoVariant(index)} key={index}>
                 <View style={styles.card}>
@@ -40,7 +41,9 @@ export default function Variant(props) {
                 </View>
               </TouchableOpacity>
             )
-          })
+          }) : <View style={[styles.container, styles.horizontal]}>
+            <ActivityIndicator size="large" color="teal" />
+          </View>
         }
       </ScrollView>
     </View>
@@ -72,4 +75,16 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderTopColor: '#11111110'
   },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    marginTop: Dimensions.get("window").height * 0.3
+  },
+  horizontal: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10,
+    alignItems: "center"
+
+  }
 })
